@@ -237,5 +237,5 @@ To add support for new regions or regulations:
 
 ## License
 
-[Specify your license here]
+MIT License
 
