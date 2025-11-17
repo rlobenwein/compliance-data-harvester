@@ -234,20 +234,14 @@ def main():
     # Update command
     update_parser = subparsers.add_parser("update", help="Update regulation(s)")
     update_parser.add_argument(
-        "target",
-        nargs="?",
-        choices=["all"],
-        help="Update all regulations (or specify region and regulation)"
-    )
-    update_parser.add_argument(
         "region_id",
         nargs="?",
-        help="Region identifier (e.g., 'eu', 'usa')"
+        help="Region identifier (e.g., 'eu', 'usa', 'brazil') or 'all' to update all regulations"
     )
     update_parser.add_argument(
         "regulation_id",
         nargs="?",
-        help="Regulation identifier (e.g., 'gdpr', 'hipaa')"
+        help="Regulation identifier (e.g., 'gdpr', 'hipaa', 'lgpd')"
     )
     update_parser.add_argument(
         "--data-dir",
@@ -284,7 +278,7 @@ def main():
         init_regions(config)
     
     elif args.command == "update":
-        if args.target == "all":
+        if args.region_id == "all":
             update_all(config, dry_run=args.dry_run, verbose=args.verbose)
         elif args.region_id and args.regulation_id:
             update_regulation(
